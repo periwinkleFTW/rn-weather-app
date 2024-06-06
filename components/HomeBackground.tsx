@@ -11,7 +11,7 @@ const HomeBackground = () => {
   const smokeOffsetY = height * 0.4;
 
   return (
-    <>
+    <View style={{ ...StyleSheet.absoluteFillObject }}>
       <Canvas style={{ flex: 1 }}>
         <Rect x={0} y={0} width={width} height={height}>
           <LinearGradient start={vec(0, 0)} end={vec(width, height)} colors={["#2E335A", "#1C1B33"]} />
@@ -30,7 +30,7 @@ const HomeBackground = () => {
         </Canvas>
         <Image source={require("../assets/home/House.png")} style={myStyles.houseImage} resizeMode="cover" />
       </ImageBackground>
-    </>
+    </View>
   );
 };
 
