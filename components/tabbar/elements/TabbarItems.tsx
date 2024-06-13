@@ -25,8 +25,16 @@ const TabbarItems = () => {
     >
       <MapIcon />
       <TrapezoidBackground width={trapezoidWidth} height={trapezoidHeight} />
-      <Pressable style={{ ...StyleSheet.absoluteFillObject, left: buttonCenterX, top: 12 }}>
-        <CircleButton radius={circleRadius} />
+      <Pressable
+        style={{
+          ...StyleSheet.absoluteFillObject,
+          left: buttonCenterX,
+          top: 12,
+          width: circleRadius * 2,
+          height: circleRadius * 2,
+        }}
+      >
+        {({ pressed }) => <CircleButton radius={circleRadius} pressed={pressed} />}
       </Pressable>
       <ListIcon />
     </View>
