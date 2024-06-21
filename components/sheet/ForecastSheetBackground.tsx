@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from "react-native";
 import React from "react";
-import { Canvas, Line, LinearGradient, RoundedRect, vec } from "@shopify/react-native-skia";
+import { Canvas, Line, LinearGradient, Path, RoundedRect, vec } from "@shopify/react-native-skia";
 import { BlurView } from "expo-blur";
 
 interface ForecastSheetBackgroundProps {
@@ -10,6 +10,10 @@ interface ForecastSheetBackgroundProps {
 }
 
 const ForecastSheetBackground = ({ width, height, cornerRadius }: ForecastSheetBackgroundProps) => {
+  const borderPath = `M 0 ${cornerRadius}
+  A ${cornerRadius} ${cornerRadius} 0 0 1 ${cornerRadius} 0
+  H ${width - cornerRadius}
+  A ${cornerRadius} ${cornerRadius} 0 0 1 ${width} ${cornerRadius}`;
   return (
     <BlurView
       style={{ ...StyleSheet.absoluteFillObject, borderRadius: cornerRadius, overflow: "hidden" }}
@@ -25,6 +29,13 @@ const ForecastSheetBackground = ({ width, height, cornerRadius }: ForecastSheetB
             positions={[-0.04, 0.95]}
           />
         </RoundedRect>
+        <Path path={borderPath} style={"stroke"} strokeWidth={2} color={"white"}>
+          <LinearGradient
+            start={vec(width / 2, 0)}
+            end={vec(width / 2, cornerRadius)}
+            colors={["white", "transparent"]}
+          />
+        </Path>
       </Canvas>
     </BlurView>
   );
